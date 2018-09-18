@@ -5,9 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    html, body{
+      overflow: hidden;
+    }
+    .jump-btn{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #37b3c9;
+      transition: all .24s;
+      line-height: 100px;
+      text-align: center;
+      color: aliceblue;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
+  <button class="undo">撤销(Undo)</button>
+  <button class="redo">恢复(Redo)</button>
+  <button class="add">新增操作</button>
+  <div class="jump-btn">跳动盒子</div>
   <script src="./array-to-hash-object.js"></script>
   <script src="./filter-order-arrray.js"></script>
+  <script src="redo-undo.js"></script>
+  <script>
+    const jq = (id) => {
+      return document.querySelector(id)
+    }
+    const on = (dom, type, fn) => {
+      dom.addEventListener(type, fn, false)
+    }
+    const snap = new History({
+      maxSnapshots: 30
+    })
+
+    const undo = jq('.undo')
+    const redo = jq('.redo')
+    const add = jq('.add')
+    const jumpBtn = jq('.jump-btn')
+
+    const random = () => {
+      return {
+        x: ~~(Math.random() * 1280),
+        y: ~~(Math.random() * 800) + 100,
+        c: "#"+('000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6)
+      }
+    }
+    const actions = (randomVal) => {
+      jumpBtn.style.left = randomVal.x + 'px'
+      jumpBtn.style.top = randomVal.y + 'px'
+      jumpBtn.style.backgroundColor = randomVal.c
+    }
+    on(undo, 'click', () => {
+      const undo = snap.undo()
+      if (undo) {
+        actions(undo)
+      } else {
+        alert('没有可撤销的数据')
+      }
+    })
+
+    on(redo, 'click', () => {
+      const redo = snap.redo()
+      if (redo) {
+        actions(redo)
+      } else {
+        alert('没有可恢复的数据')
+      }
+    })
+
+    on(add, 'click', () => {
+      const randomVal = random()
+      actions(randomVal)
+      snap.record(randomVal)
+      console.log(snap.status())
+    })
+  </script>
 </body>
 </html>

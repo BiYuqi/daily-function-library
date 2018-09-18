@@ -48,8 +48,13 @@ ud.undo()
 ud.undo()
 console.log(list)
 
+/**
+ * 快照式存储记录
+ * 参照在线h5
+ */
 class History {
-  constructor () {
+  constructor (opt) {
+    this.maxSnapshots = opt && opt.maxSnapshots || 20
     this.snapshots = []
     this.cursor = -1
   }
@@ -69,6 +74,9 @@ class History {
   record (snap) {
     while (this.cursor < this.snapshots.length - 1) {
       this.snapshots.pop()
+    }
+    if (this.snapshots.length > this.maxSnapshots) {
+      this.snapshots.shift()
     }
     this.snapshots.push(snap)
     this.cursor = this.snapshots.length - 1
@@ -103,21 +111,3 @@ class History {
   }
 }
 
-const snap = new History()
-const copy = (name, age) => {
-  return {
-    name,
-    age
-  }
-}
-snap.record(copy('毕宇旗', 26))
-snap.record(copy('毕宇旗', 27))
-snap.record(copy('毕宇旗', 28))
-snap.record(copy('毕宇旗', 29))
-snap.record(copy('毕宇旗', 30))
-snap.record(copy('毕宇旗', 31))
-snap.redo()
-console.log(snap.getCursor)
-console.log(snap.canRedo)
-// snap.redo()
-// console.log(snap.canRedo)
