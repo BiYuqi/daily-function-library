@@ -13,19 +13,17 @@ function MyMutationObserver () {
 
   const observer = MutationObserver ? new MutationObserver(mutations => {
     //
-    mutations.forEach(item => {
+    console.log(mutations)
+    mutations.forEach(mutation => {
       // 处理 变化的 DOM
       changedHandler(mutation.target)
       // 处理 新增的 DOM
       if (mutation.addedNodes) {
+        console.log('mutation.addedNodes', mutation.addedNodes)
         mutation.addedNodes.forEach(changedHandler)
       }
     })
   }) : null
 
-  return observer ? function () {
-    observer.observe(document.body, MutationConfig)
-  } : function () {
-    console.log('not support')
-  }
+  observer.observe(document.body, MutationConfig)
 }
