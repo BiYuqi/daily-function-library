@@ -1,4 +1,4 @@
-function MutationObserver () {
+function MyMutationObserver () {
   const MutationObserver = window.MutationObserver || window.WebkitMutationObserver || window.MozMutationObserver
 
   const MutationConfig = {

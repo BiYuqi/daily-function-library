@@ -31,6 +31,7 @@
   <script src="./filter-order-arrray.js"></script>
   <script src="redo-undo.js"></script>
   <script src="proxy.js"></script>
+  <script src="./mutation-observer.js"></script>
   <script>
     const jq = (id) => {
       return document.querySelector(id)
@@ -83,6 +84,8 @@
       snap.record(randomVal)
       console.log(snap.status())
     })
+    // -----------------------------------
+    new MyMutationObserver()
   </script>
 </body>
 </html>
