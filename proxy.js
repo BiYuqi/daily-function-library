@@ -9,20 +9,17 @@ const proxy = (obj, path = []) => {
       return proxy(obj, path.concat(key))
     },
     apply: (target, thisArg, args) => {
-      console.log(thisArg, args, path)
       let result = obj
       for (let i = 0; i < path.length; i++) {
+        result = result[path[i]]
         if (!result) {
+          result = args[0]
           break
         }
-        result = result[path[i]]
-      }
-      if (result === undefined || result === null) {
-        result = args[0]
       }
       return result
     }
   })
 }
-const res = proxy(obj).a('999')
-console.log(res)
+proxy(obj).a('占位符') // 123
+proxy(obj).a.c('占位符') // 占位符
