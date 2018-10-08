@@ -4,7 +4,8 @@ function MyMutationObserver () {
   const MutationConfig = {
     childList: true,
     attributes: true,
-    subtree: true
+    subtree: true,
+    attributeOldValue: true
   }
 
   const changedHandler = (element) => {
