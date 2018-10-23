@@ -5,7 +5,6 @@ const obj = {
 const proxy = (obj, path = []) => {
   return new Proxy(() => {}, {
     get: (target, key) => {
-      console.log(target, key)
       return proxy(obj, path.concat(key))
     },
     apply: (target, thisArg, args) => {
@@ -21,5 +20,5 @@ const proxy = (obj, path = []) => {
     }
   })
 }
-proxy(obj).a('占位符') // 123
-proxy(obj).a.c('占位符') // 占位符
+console.log(proxy(obj).a('占位符')) // 123
+console.log(proxy(obj).a.c('占位符')) // 占位符
