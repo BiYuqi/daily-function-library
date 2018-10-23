@@ -1,6 +1,6 @@
-const str = `https://www.baidu?key=1&key2=2&path=sdfdsfsdfsd&id=23423423`
+const str = `https://www.baidu.com?charge_id=1&chStation_id=1027&otherMsg=消息`
 
-export const urlParse = (url = window.location.href) => {
+const urlParse = (url = window.location.href) => {
   const path = url.split('?')[1]
   const reg = /(\w+)=([^&]+)/g
   const res = {}
@@ -13,3 +13,4 @@ export const urlParse = (url = window.location.href) => {
   }
   return Throw ('Unusable character')
 }
+console.log(urlParse(str))
