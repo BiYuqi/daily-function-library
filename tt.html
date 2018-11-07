@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Base() {
+      return 'sdfsdf'
+    }
+    Base.prototype.name = 'name'
+    var a = new Base()
+    console.log(Base.prototype.constructor)
+    console.log(Base.prototype.constructor === Base)
+    console.log(a.__proto__)
+    console.log('a.__proto__ === Base.prototype', a.__proto__ === Base.prototype)
+    console.log('a.__proto__.constructor === Base.prototype.constructor', a.__proto__.constructor === Base.prototype.constructor)
+    console.log(Object.keys(Base.prototype))
+
+    function Persion() {
+      
+    }
+    console.log(Persion.prototype.constructor === Persion)
+    Persion.prototype = {
+      name: '毕宇旗',
+      age: '26',
+      say: function () {
+        return 'Chinese'
+      }
+    }
+    console.log(Persion.prototype.constructor)
+  </script>
+</body>
+</html>

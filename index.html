@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    html, body{
+    html,
+    body {
       overflow: hidden;
     }
-    .jump-btn{
+
+    .jump-btn {
       position: absolute;
       width: 100px;
       height: 100px;
@@ -22,6 +25,7 @@
     }
   </style>
 </head>
+
 <body>
   <button class="undo">撤销(Undo)</button>
   <button class="redo">恢复(Redo)</button>
@@ -32,7 +36,8 @@
   <script src="redo-undo.js"></script>
   <script src="proxy.js"></script>
   <script src="./mutation-observer.js"></script>
-  <script src="./query.js"></script>
+  <script src="./parseQuery.js"></script>
+  <script src="object-create.js"></script>
   <script>
     const jq = (id) => {
       return document.querySelector(id)
@@ -53,7 +58,7 @@
       return {
         x: ~~(Math.random() * 1280),
         y: ~~(Math.random() * 800) + 100,
-        c: "#"+('000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6)
+        c: "#" + ('000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6)
       }
     }
     const actions = (randomVal) => {
@@ -89,4 +94,5 @@
     new MyMutationObserver()
   </script>
 </body>
+
 </html>

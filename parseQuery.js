@@ -13,4 +13,5 @@ const parseQuery = (url = window.location.href) => {
   }
   return res
 }
-console.log(parseQuery(str))
+const log = '?sid=RByZiPniWiCVWvnwJRiiGVSKrVrALpQv&df=unknow#module=mbox.ListModule%7C%7B"filter"%3A%7B"flags"%3A%7B"read"%3Afalse%7D%7D%2C"order"%3A"date"%2C"desc"%3Atrue%2C"fids"%3A%5B1%2C3%2C18%2C258%2C8695094%2C8695095%2C257%5D%7D'
+console.log(parseQuery(log))
